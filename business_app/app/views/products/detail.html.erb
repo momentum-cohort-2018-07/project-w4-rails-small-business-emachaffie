@@ -1,0 +1,16 @@
+<div>
+  <h2><%= @product.item %></h2>
+  <p><%= @product.description %></p>
+  <p>Dimensions: <%=@product.dimension_l %>&quot; x <%= @product.dimension_w%>&quot; <%= @product.dimension_h%>&quot; </p>
+  <p>Category: <%= @product.category.capitalize %></p>
+  <% if @product.condition == 'good'%>
+    <% cost = @product.price.to_i%>
+          <% cost = cost - cost*0.10%>
+          <% @product.price = cost%>
+  <% elsif @product.condition == 'average'%>
+    <% cost = @product.price.to_i%>
+      <% cost = cost - cost*0.20%>
+      <% @product.price = cost%>
+  <% end %>
+  <p>Price: $<%= @product.price %>
+</div>

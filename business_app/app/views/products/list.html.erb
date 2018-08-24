@@ -1,0 +1,39 @@
+<h1>Current Stock</h1>
+
+<div>
+  <% @products.each do |product| %>
+    <% if product.quantity.to_i == 0 %>
+      <div></div>
+    <% elsif product.condition == 'good' %>
+      <% cost = product.price.to_i%>
+          <% cost = cost - cost*0.10%>
+          <% product.price = cost%>
+            <div class='container'>
+                <h3><%= product.item%></h3>
+                <div class='text-danger my-2'>Clearance!</div>
+                <p>Condition: <%=product.condition.capitalize%></p>
+                <p>Price: $<%=product.price%></p>
+                <%= link_to "View Details", "/products/#{product.pid}", class: "btn btn-outline-secondary" %>
+              </div>
+    <% elsif product.condition == 'average'%>
+        <% cost = product.price.to_i%>
+          <% cost = cost - cost*0.20%>
+          <% product.price = cost%>
+            <div class='container'>
+                <h3><%= product.item%></h3>
+                <div class='text-danger my-2'>Clearance!</div>
+                <p>Condition: <%=product.condition.capitalize%></p>
+                <p>Price: $<%=product.price%></p>
+                <%= link_to "View Details", "/products/#{product.pid}", class: "btn btn-outline-secondary" %>
+              </div>
+        <% else %>
+          <div class='container'>
+            <h3><%= product.item%></h3>
+            
+            <p>Condition: <%=product.condition.capitalize%></p>
+            <p>Price: $<%=product.price%></p>
+            <%= link_to "View Details", "/products/#{product.pid}", class: "btn btn-outline-secondary" %>
+          </div>
+    <% end %>
+  <% end %>
+</div>
